@@ -1,0 +1,78 @@
+- name: Begrueßung
+  description: Erstmaliges Skript beim Startem
+  snippets:
+    - name: default
+      steps:
+        - say: Hi, ich bin Meety, der Meeting-Assistent! Um Covid-19 Infektionen möglichst schnell feststellen zu können, überprüfe ich regelmäßig die Temperatur aller Meetingteilnehmer. Dabei werden keine Daten gespeichert, keine Sorge!
+        - wait:
+            variable: messung
+            options:
+              - show: Messung starten
+                value: start
+        - switch:
+            arg: messung
+            cases:
+              - match: start
+                steps:
+                  - say: Alles klar, dann fangen wir an!
+                  - goto: messung_starten
+
+    - name: messung_starten
+      steps:
+        - say: Alles klar, wir starten die Messung! Bitte positioniere dich zentral vor den Kamerasensor. Bitte halte keine heißen Gegenstände (wie Kaffee) im Bild, um die Messung nicht zu verfälschen.
+        - wait:
+            variable: in_messung
+            options:
+              - show: Beenden
+                value: end
+              - show: Messen
+                value: start
+        - switch:
+            arg: messen
+            cases:
+              - match: end
+              - match: start
+                steps:
+                  - wait:
+#        - wait:
+#            variable: name
+#            placeholder: Your name
+#        - say: Nice to meet you, {{name}}
+#        - say: How are you feeling?
+#        - wait:
+#            variable: feeling
+#            options:
+#              - show: pretty okay
+#                value: good
+#              - show: not so much
+#                value: bad
+#                steps:
+#                  - say: Oh no, that's too bad!
+#        - switch:
+#            arg: feeling
+#            cases:
+#              - match: bad
+#                steps:
+#                  - say: I understand that you're not feeling great
+#                  - goto: symptoms
+#              - default: true
+#                steps:
+#                  - say: Okay, so just tell me about your day then
+#                  - wait:
+#                      variable: notes
+#                      long: true
+#        - say: Goodbye for now!
+#
+#    - name: symptoms
+#      steps:
+#        - say: Please check all symptoms that apply
+#        - wait:
+#            variable: symptoms
+#            multi: true
+#            options:
+#              - show: nausea or stomachache
+#                field: nausea_stomachache
+#              - show: headache or migrane
+#                field: headaches
+#              - show: continue
+

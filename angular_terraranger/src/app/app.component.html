@@ -1,0 +1,22 @@
+<div style="display: flex; height: 100vh; width: 100%">
+  <div style="display: flex; margin: auto; height: 500px">
+    <div style="vertical-align: center; width: 500px">
+      <div style="position: relative;">
+        <div style="position: absolute; top: 100px; left: 160px; height: 100px; width: 170px; border:3px solid black;"></div>
+        <img src="{{imageUrl}}" alt="" style="height: 500px; width: 100%"/>
+      </div>
+    </div>
+    <span style="width: 50px"></span>
+    <div>
+      <mat-card style="display: block; width: 500px; height: 440px; padding: 30px; overflow-y: auto;">
+        <div *ngFor="let text of instructions"
+             [ngStyle]="{'background-color': getMessageColor(text)}"
+             [innerHTML]="text"
+             style="border-radius: 10px; background-color: cornflowerblue; color: white; box-shadow: 2px 2px 5px dimgrey; padding: 15px; margin-bottom: 20px; font-size: 16px">
+        </div>
+      </mat-card>
+      <button mat-raised-button color="primary" style="width: 100%; font-size: 16px; margin: 10px 0 10px 0" (click)="onMessenBtnClick()">{{messenBtn}}</button>
+      <button *ngIf="temperatureStatus != TemperatureStatus.NONE" mat-raised-button color="primary" style="width: 100%; font-size: 16px" (click)="getMaxTemp()">Weitere Messung</button>
+    </div>
+  </div>
+</div>
